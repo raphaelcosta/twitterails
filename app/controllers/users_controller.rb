@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :load_user, only: [:show, :follow, :unfollow]
 
   def index
-    @users = User.excluding_user(current_user)
+    @users = User.excluding_user(current_user).page params[:page]
   end
 
   def show
