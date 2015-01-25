@@ -12,4 +12,10 @@ Rails.application.routes.draw do
 
   # Edit account
   resource :account, only: [:show, :edit, :update]
+
+  # Other users
+  resources :users, only: [:index, :show] do
+    get :follow, on: :member
+    get :unfollow, on: :member
+  end
 end

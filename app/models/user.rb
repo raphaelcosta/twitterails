@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :followed_relationships 
   has_many :following, through: :follow_relationships, source: :followed
 
+  scope :excluding_user, ->(user) { where.not(id: user.id) }
+
   def following?(user)
     following.include?(user)
   end
@@ -25,5 +27,9 @@ class User < ActiveRecord::Base
   def unfollow(user)
     relation = followed_relationships.find_by(followed_id: user.id)
     relation ? relation.destroy : false
+  end
+
+  def to_param
+    username
   end
 end
