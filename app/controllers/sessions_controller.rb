@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
   layout 'login'
 
-  def new
-  end
-
   def create
     user = User.find_by_username(user_params[:username])
     if user && user.authenticate(user_params[:password])

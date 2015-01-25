@@ -1,5 +1,5 @@
-<%= form_for @user, url: signup_path, html: { class: 'form-signin' } do |f| %>
-  <h2 class="form-signin-heading">Create your account</h2>
+<%= form_for @user, url: account_path, html: { class: 'form-signin' } do |f| %>
+  <h2 class="form-signin-heading">Edit your account</h2>
 
   <%= render 'shared/errors' %>
 
@@ -8,5 +8,5 @@
   <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
   <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
 
-  <%= f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block' %>
+  <%= f.submit 'Update my account', class: 'btn btn-lg btn-primary btn-block' %>
 <% end %>
