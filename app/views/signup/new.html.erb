@@ -1,13 +1,7 @@
 <%= form_for @user, url: signup_path, html: { class: 'form-signin' } do |f| %>
   <h2 class="form-signin-heading">Create your account</h2>
 
-  <% if @user.errors.any? %>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <%= render 'errors' %>
 
   <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
   <%= f.text_field :username, class: 'form-control', placeholder: 'Username' %>
