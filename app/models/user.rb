@@ -6,19 +6,24 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :username, format: { with: /\A[a-z0-9_-]{3,20}\z/i }
 
-  has_many :relationships, class_name: 'Follow', foreign_key: 'follower_id',
-                                                 dependent: :destroy
-  has_many :following, through: :relationships, source: :followed
+  has_many :follow_relationships,   class_name: 'Follow', foreign_key: 'follower_id',
+                                                          dependent: :destroy
+  has_many :followed_relationships, class_name: 'Follow', foreign_key: 'follower_id',
+                                                          dependent: :destroy
+  has_many :followers, through: :followed_relationships 
+  has_many :following, through: :follow_relationships, source: :followed
 
   def following?(user)
     following.include?(user)
   end
 
   def follow(user)
-    relationships.find_or_create_by(followed_id: user.id)
+    return false if self == user
+    follow_relationships.find_or_create_by(followed_id: user.id)
   end
 
   def unfollow(user)
-    relationships.find_by(followed_id: user.id).destroy
+    relation = followed_relationships.find_by(followed_id: user.id)
+    relation ? relation.destroy : false
   end
 end
