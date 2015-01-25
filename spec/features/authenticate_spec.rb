@@ -8,7 +8,7 @@ feature 'Authenticate', %q{
 
   scenario 'with valid username and password' do
     user = create(:user)
-    login_with user.username, 'password'
+    login_with user.username, user.password
     expect(page).to have_text('You have been successfully logged in')
   end
 

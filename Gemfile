@@ -54,4 +54,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'capybara'
   gem 'webmock'
+  gem 'faker'
 end
