@@ -16,22 +16,7 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Twitterails</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Home", root_path %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%= render 'shared/navbar' %>
 
     <div class="container">
       <div class="row">
@@ -40,11 +25,6 @@
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; Twitterails 2015</p>
-      </footer>
-
     </div> <!-- /container -->
   </body>
 </html>

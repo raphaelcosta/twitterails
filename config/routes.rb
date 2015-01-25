@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   # Login
-  get  'login', to: 'sessions#new', as: :login
-  post 'login', to: 'sessions#create', as: :create_session
+  get  'login',  to: 'sessions#new', as: :login
+  post 'login',  to: 'sessions#create', as: :create_session
+  get  'logout', to: 'sessions#destroy', as: :logout
 
   # Signup
   get  'signup', to: 'signup#new', as: :new_signup
