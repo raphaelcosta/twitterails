@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 
   scope :excluding_user, ->(user) { where.not(id: user.id) }
 
+  def feed(page = nil)
+    Message.feed_for_user(self, page)
+  end
+
   def following?(user)
     following.include?(user)
   end

@@ -5,4 +5,9 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
   end
+
+  factory :message do
+    user
+    content { Faker::Lorem.sentence }
+  end
 end

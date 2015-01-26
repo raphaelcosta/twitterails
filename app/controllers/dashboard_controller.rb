@@ -4,6 +4,6 @@ class DashboardController < ApplicationController
   def index
     @user = current_user
     @message = @user.messages.build
-    @messages = @user.messages.page params[:page]
+    @messages = @user.feed params[:page]
   end
 end

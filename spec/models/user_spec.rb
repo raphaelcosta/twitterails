@@ -1,6 +1,29 @@
 require 'rails_helper'
 
 describe User do
+  describe '#feed' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+    let(:message) { create(:message, user: other_user) }
+    
+    context 'when user follow other user with message' do
+      before do
+        user.follow(other_user)
+      end
+
+      it 'must return other user message' do
+        expect(user.feed).to include(message)
+      end
+    end
+
+    context "when user don't follow user with message" do
+      it 'must return other user message' do
+        expect(user.feed).to_not include(message)
+      end
+    end
+
+  end
+
   describe '#follow' do
     it 'should return false if try to follow itself' do
       user = build(:user)
