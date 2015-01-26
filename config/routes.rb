@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     get :follow, on: :member
     get :unfollow, on: :member
+
+    get :block, on: :member
+    get :unblock, on: :member
   end
 
   resources :messages, only: [:create]

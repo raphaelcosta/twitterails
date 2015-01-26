@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 describe User do
+  describe '#block' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+
+    context 'when user block other user' do
+      it 'must return include user in block list' do
+        user.block(other_user)
+        expect(user.blocked_users).to include(other_user)
+        expect(other_user.blocked_by?(user)).to be true
+      end
+    end
+  end
+
   describe '#feed' do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
@@ -21,7 +34,6 @@ describe User do
         expect(user.feed).to_not include(message)
       end
     end
-
   end
 
   describe '#follow' do
@@ -36,6 +48,20 @@ describe User do
 
       user.follow(other_user)
       expect(user.following).to include(other_user)
+    end
+
+    context 'when other user blocked requester' do
+      let(:user) { create(:user) }
+      let(:other_user) { create(:user) }
+
+      before do
+        other_user.block(user)
+      end
+
+      it 'must return false' do
+        result = user.follow(other_user)
+        expect(result).to be false
+      end
     end
 
     context 'when user already follow the user' do

@@ -23,7 +23,17 @@ feature 'Manage user follows', %q{
       expect(page).to_not have_button('Follow')
       expect(page).to have_text("Now you are following #{other_user.username}")
     end
+
+    scenario 'when user is blocked, dont permit to follow' do
+      other_user.block user
+      within(".user-#{other_user.id}") do
+        click_link 'Follow'
+      end
+
+      expect(page).to have_text("You can't follow")
+    end
   end
+
 
   feature 'unfollow other user' do
     background do
