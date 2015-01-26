@@ -17,8 +17,6 @@ feature 'Post new message', %q{
     click_button 'Post'
 
     expect(page).to have_text('Your tweet have been published')
-
-    visit user_path(user)
     expect(page).to have_text('Olá, meu primeiro tweetrails')
     expect(page).to have_text('less than a minute ago')
   end

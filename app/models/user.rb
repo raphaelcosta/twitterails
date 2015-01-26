@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :email, :password
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :username, format: { with: /\A[a-z0-9_-]{3,20}\z/i }
+  validates :username, format: { with: /\A[a-z0-9_-]{3,25}\z/i }
 
   has_many :messages
   has_many :follow_relationships,   class_name: 'Follow', foreign_key: 'follower_id',
