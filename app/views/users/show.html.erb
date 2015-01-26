@@ -1,0 +1,22 @@
+<%= content_for :title, @user.username %>
+
+<div class="row">
+  <aside class="col-lg-4">
+    <section>
+      <h2><%= @user.name %></h2>
+      <h4><%= @user.username %></h4>
+    </section>
+  </aside>
+
+  <div class="col-lg-8">
+    <% if @messages.any? %>
+      <h3>Messages</h3>
+      <ol class="messages">
+        <%= render @messages %>
+      </ol>
+      <%= paginate @messages %>
+    <% else %>
+      <p>This user don't have any messages yet</p>
+    <% end %>
+  </div>
+</div>

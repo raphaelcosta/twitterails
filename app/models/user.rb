@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :username, format: { with: /\A[a-z0-9_-]{3,20}\z/i }
 
+  has_many :messages
   has_many :follow_relationships,   class_name: 'Follow', foreign_key: 'follower_id',
                                                           dependent: :destroy
   has_many :followed_relationships, class_name: 'Follow', foreign_key: 'follower_id',

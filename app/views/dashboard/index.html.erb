@@ -1,0 +1,26 @@
+<%= content_for :title, 'Welcome' %>
+
+<div class="row">
+  <aside class="col-lg-4">
+    <section>
+      <h2><%= @user.name %></h2>
+      <h4><%= @user.username %></h4>
+    </section>
+    <section>
+      <%= form_for @message do |f| %>
+        <%= f.text_area :content, class: 'form-control', placeholder: 'Your message' %>
+        <%= f.submit 'Post', class: 'btn btn-primary' %>
+      <% end %>
+    </section>
+  </aside>
+
+  <div class="col-lg-8">
+    <% if @messages.any? %>
+      <h3>Messages</h3>
+      <ol class="messages">
+        <%= render @messages %>
+      </ol>
+      <%= paginate @messages %>
+    <% end %>
+  </div>
+</div>

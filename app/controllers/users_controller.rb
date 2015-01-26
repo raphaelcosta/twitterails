@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @messages = @user.messages.page params[:page]
   end
 
   def follow

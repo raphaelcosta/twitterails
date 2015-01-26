@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     get :follow, on: :member
     get :unfollow, on: :member
   end
+
+  resources :messages, only: [:create]
 end
